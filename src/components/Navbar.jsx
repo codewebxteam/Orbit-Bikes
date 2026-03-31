@@ -1,42 +1,96 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes, FaSearch } from 'react-icons/fa';
+import { FiArrowRight, FiMenu, FiX } from 'react-icons/fi';
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Our Story', href: '/our-story' },
-  { name: 'E-Scooters', href: '/escooters' },
-  { name: 'Dealer Registration', href: '/dealer-registration' },
-  { name: 'Dealer Locator', href: '/dealer-locator' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Contact Us', href: '/contact' },
+  { name: 'About', href: '#about' },
+  { name: 'Test Ride', href: '#test-drive' },
+  { name: 'Why Orbit', href: '#why-orbit' },
+  { name: 'Lineup', href: '#lineup' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'Feedback', href: '#feedback' },
+  { name: 'Contact', href: '#contact' },
 ];
+
+function Brand() {
+  return (
+    <a href="#home" className="flex items-center gap-3">
+      <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-sm font-bold uppercase tracking-[0.32em] text-[var(--color-brand-warm)]">
+        OR
+      </span>
+      <span>
+        <span className="block font-['Space_Grotesk'] text-lg font-bold tracking-[0.22em] text-white">
+          ORBIT
+        </span>
+        <span className="block text-[11px] uppercase tracking-[0.28em] text-slate-400">
+          Electric mobility
+        </span>
+      </span>
+    </a>
+  );
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="flex items-center justify-between px-4 lg:px-8 py-2">
-        <img src="https://www.orbitebikes.in/assets/img/Orbit%20Logo.png" alt="Orbit eBikes" className="h-9 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+  const closeMenu = () => setMenuOpen(false);
 
-        <div className="hidden lg:flex items-center gap-1">
-          <ul className="flex items-center gap-1">
-            {navLinks.map(link => (
-              <li key={link.name}>
+  return (
+    <header className="sticky top-0 z-50 px-4 py-4 sm:px-8">
+      <div className="mx-auto max-w-6xl rounded-full border border-white/10 bg-[#09120ecf] px-4 py-3 shadow-[0_18px_48px_rgba(3,10,8,0.32)] backdrop-blur-xl sm:px-6">
+        <div className="flex items-center justify-between gap-4">
+          <Brand />
+
+          <nav className="hidden items-center gap-7 lg:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-slate-300 transition duration-200 hover:text-white"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden lg:block">
+            <a href="#test-drive" className="orbit-button-primary">
+              Book a ride
+              <FiArrowRight />
+            </a>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
+        </div>
+
+        {menuOpen && (
+          <div className="mt-4 rounded-[28px] border border-white/10 bg-white/5 p-4 lg:hidden">
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link) => (
                 <a
+                  key={link.name}
                   href={link.href}
-                  className="text-xs font-medium text-gray-700 px-2 py-1 rounded-lg border border-transparent hover:border-gray-200 hover:bg-gray-50 hover:text-[#00b300] transition-all duration-200 whitespace-nowrap"
+                  onClick={closeMenu}
+                  className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition duration-200 hover:bg-white/5 hover:text-white"
                 >
                   {link.name}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        
+              ))}
+            </nav>
+            <a href="#test-drive" onClick={closeMenu} className="orbit-button-primary mt-4 w-full">
+              Book a ride
+              <FiArrowRight />
+            </a>
+          </div>
+        )}
       </div>
-    </nav>
+    </header>
   );
 }

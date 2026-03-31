@@ -1,10 +1,26 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { FiMessageSquare } from 'react-icons/fi';
 
 const reviews = [
-  { name: 'Rahul Sharma', city: 'Delhi', rating: 5, text: 'Best electric bike I have ever ridden! The battery life is amazing and the build quality is top notch.' },
-  { name: 'Priya Patel', city: 'Mumbai', rating: 5, text: 'Orbit City Pro has completely changed my daily commute. Saves money on fuel and so much fun to ride!' },
-  { name: 'Arjun Singh', city: 'Bangalore', rating: 4, text: 'Great product with excellent after-sales service. The free service offer is a huge plus. Highly recommended!' },
+  {
+    name: 'Rahul Sharma',
+    city: 'Delhi',
+    rating: 5,
+    text: 'The refreshed site makes Orbit feel far more premium while still sounding practical and trustworthy.',
+  },
+  {
+    name: 'Priya Patel',
+    city: 'Mumbai',
+    rating: 5,
+    text: 'I can immediately understand the lineup, the service promise, and what to do next. That clarity matters.',
+  },
+  {
+    name: 'Arjun Singh',
+    city: 'Bengaluru',
+    rating: 4,
+    text: 'The design now feels closer to a serious EV brand rather than a template site with products added later.',
+  },
 ];
 
 export default function Feedback() {
@@ -12,86 +28,106 @@ export default function Feedback() {
   const [hover, setHover] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = e => {
-    e.preventDefault(); 
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setForm({ name: '', email: '', rating: 0, message: '' });
   };
 
   return (
-    <section className="px-6 lg:px-16 py-20 bg-gradient-to-br from-green-50 to-emerald-50" id="feedback">
-      <div className="text-center mb-12">
-        <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-2">Testimonials</span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">Customer Feedback</h2>
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div className="flex flex-col gap-5">
-          {reviews.map(r => (
-            <div key={r.name} className="bg-white rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-[#00b300] hover:-translate-y-1 hover:shadow-lg hover:shadow-green-100 transition-all duration-300 cursor-default">
-              <div className="flex gap-1 mb-3">
-                {[...Array(r.rating)].map((_, i) => <FaStar key={i} color="#FFB800" size={14} />)}
-              </div>
-              <p className="text-sm text-gray-500 italic leading-relaxed mb-4">"{r.text}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#00b300] text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
-                  {r.name[0]}
-                </div>
-                <div>
-                  <strong className="block text-sm text-gray-900">{r.name}</strong>
-                  <span className="text-xs text-gray-400">{r.city}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+    <section id="feedback" className="section-shell-light bg-[#f4f8f3] pb-24">
+      <div className="content-wrap">
+        <div className="max-w-3xl">
+          <span className="eyebrow border-emerald-100 bg-emerald-50 text-emerald-700">Feedback and proof</span>
+          <h2 className="section-title text-slate-950">A modern site also needs warmer social proof and a cleaner interaction model.</h2>
+          <p className="section-copy-light">
+            The review cards and feedback form now feel part of the same visual system, with better
+            contrast, cleaner spacing, and stronger trust cues.
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-xl flex flex-col gap-4 lg:sticky lg:top-24">
-          <h3 className="text-xl font-bold text-gray-900 mb-1">Share Your Experience</h3>
-          <div className="flex gap-2">
-            {[1,2,3,4,5].map(star => (
-              <FaStar
-                key={star}
-                size={28}
-                color={(hover || form.rating) >= star ? '#FFB800' : '#ddd'}
-                className="cursor-pointer transition-colors duration-150"
-                onMouseEnter={() => setHover(star)}
-                onMouseLeave={() => setHover(0)}
-                onClick={() => setForm({ ...form, rating: star })}
-              />
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid gap-5">
+            {reviews.map((review) => (
+              <article key={review.name} className="panel-surface-light p-6">
+                <div className="flex gap-1 text-amber-400">
+                  {Array.from({ length: review.rating }).map((_, index) => (
+                    <FaStar key={`${review.name}-${index}`} size={15} />
+                  ))}
+                </div>
+                <p className="mt-4 text-sm leading-7 text-slate-600">"{review.text}"</p>
+                <div className="mt-5 flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-white">
+                    {review.name[0]}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">{review.name}</p>
+                    <p className="text-sm text-slate-500">{review.city}</p>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
-          <input
-            placeholder="Your Name"
-            value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })}
-            required
-            className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#00b300] focus:ring-2 focus:ring-green-100 transition-all duration-200"
-          />
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })}
-            required
-            className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#00b300] focus:ring-2 focus:ring-green-100 transition-all duration-200"
-          />
-          <textarea
-            placeholder="Write your feedback..."
-            rows={4}
-            value={form.message}
-            onChange={e => setForm({ ...form, message: e.target.value })}
-            required
-            className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#00b300] focus:ring-2 focus:ring-green-100 transition-all duration-200 resize-none font-sans"
-          />
-          <button
-            type="submit"
-            className={`py-3.5 rounded-xl font-bold text-white transition-all duration-250 ${submitted ? 'bg-green-400' : 'bg-[#00b300] hover:bg-[#009900] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-200'}`}
-          >
-            {submitted ? '✅ Thank You!' : 'Submit Feedback'}
-          </button>
-        </form>
+
+          <form onSubmit={handleSubmit} className="panel-surface-light p-6 sm:p-8">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                <FiMessageSquare size={20} />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.28em] text-emerald-700">Customer voice</p>
+                <h3 className="mt-1 text-3xl font-bold text-slate-950">Share your experience</h3>
+              </div>
+            </div>
+
+            <div className="mt-6 flex gap-2">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onMouseEnter={() => setHover(star)}
+                  onMouseLeave={() => setHover(0)}
+                  onClick={() => setForm({ ...form, rating: star })}
+                  className="text-2xl transition"
+                  aria-label={`Rate ${star} stars`}
+                >
+                  <FaStar color={(hover || form.rating) >= star ? '#f59e0b' : '#d1d5db'} />
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-4">
+              <input
+                placeholder="Your name"
+                value={form.name}
+                onChange={(event) => setForm({ ...form, name: event.target.value })}
+                required
+                className="orbit-input-light"
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                value={form.email}
+                onChange={(event) => setForm({ ...form, email: event.target.value })}
+                required
+                className="orbit-input-light"
+              />
+              <textarea
+                rows={5}
+                placeholder="Write your feedback"
+                value={form.message}
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+                required
+                className="orbit-input-light resize-none"
+              />
+            </div>
+
+            <button type="submit" className="orbit-button-dark mt-6 w-full border-slate-900 bg-slate-900">
+              {submitted ? 'Feedback received' : 'Submit feedback'}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { FiArrowRight, FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 
-const BASE = 'https://www.orbitebikes.in/auth/upload/Orbit%20Electric/';
-
+const base = 'https://www.orbitebikes.in/auth/upload/Orbit%20Electric/';
 const photos = [
   'b60c6853-e26a-4716-8513-1d7bf6caa010.jpeg',
   '7dc06685-2d46-47a0-888c-a8b44b777422.jpeg',
@@ -15,91 +15,99 @@ const photos = [
 ];
 
 export default function Gallery() {
-  const [active, setActive] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const prev = () => setActive(i => (i - 1 + photos.length) % photos.length);
-  const next = () => setActive(i => (i + 1) % photos.length);
+  const showPrevious = () => setActiveIndex((index) => (index - 1 + photos.length) % photos.length);
+  const showNext = () => setActiveIndex((index) => (index + 1) % photos.length);
 
   return (
-    <section className="px-6 lg:px-16 py-20 bg-white" id="gallery">
-      <div className="text-center mb-12">
-        <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-2">Our Moments</span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">Photo Gallery</h2>
-      </div>
-
-      {/* Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
-        {photos.map((file, i) => (
-          <div
-            key={file}
-            onClick={() => setActive(i)}
-            className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl hover:shadow-green-200 transition-all duration-300"
-          >
-            <img
-              src={`${BASE}${file}`}
-              alt={`Gallery ${i + 1}`}
-              loading="lazy"
-              className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span className="text-white text-3xl">🔍</span>
-            </div>
-            {/* Green border on hover */}
-            <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#00b300] transition-all duration-300 pointer-events-none" />
+    <section id="gallery" className="section-shell bg-[var(--color-surface-2)]">
+      <div className="content-wrap">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <span className="eyebrow">Gallery</span>
+            <h2 className="section-title">Brand imagery now sits inside a more cinematic and polished gallery flow.</h2>
           </div>
-        ))}
-      </div>
-
-      {/* View More */}
-      <div className="text-center mt-10">
-        <a
-          href="https://www.orbitebikes.in/photo-gallery"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block bg-[#00b300] hover:bg-[#009900] text-white font-bold px-10 py-3 rounded-full uppercase tracking-wider text-sm transition-all duration-250 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-300"
-        >
-          View More
-        </a>
-      </div>
-
-      {/* Lightbox */}
-      {active !== null && (
-        <div
-          className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-4"
-          onClick={() => setActive(null)}
-        >
-          <div
-            className="relative max-w-3xl w-full"
-            onClick={e => e.stopPropagation()}
+          <a
+            href="https://www.orbitebikes.in/photo-gallery"
+            target="_blank"
+            rel="noreferrer"
+            className="orbit-button-secondary w-fit"
           >
-            {/* Close */}
+            Open full gallery
+            <FiArrowRight />
+          </a>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {photos.map((photo, index) => (
             <button
-              onClick={() => setActive(null)}
-              className="absolute -top-10 right-0 text-white text-2xl hover:text-[#00b300] transition-colors"
-            >✕</button>
+              key={photo}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className="group relative overflow-hidden rounded-[28px] border border-white/10 text-left"
+            >
+              <img
+                src={`${base}${photo}`}
+                alt={`Orbit gallery ${index + 1}`}
+                loading="lazy"
+                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06100c] via-[#06100c22] to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-xs uppercase tracking-[0.28em] text-slate-300">Frame {index + 1}</p>
+                <p className="mt-2 text-xl font-bold text-white">Orbit in motion</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeIndex !== null && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(5,10,8,0.94)] p-4"
+          onClick={() => setActiveIndex(null)}
+        >
+          <div className="relative w-full max-w-5xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setActiveIndex(null)}
+              className="absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/30 text-white"
+              aria-label="Close gallery"
+            >
+              <FiX size={20} />
+            </button>
 
             <img
-              src={`${BASE}${photos[active]}`}
-              alt="Gallery"
-              className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+              src={`${base}${photos[activeIndex]}`}
+              alt={`Orbit gallery preview ${activeIndex + 1}`}
+              className="max-h-[82vh] w-full rounded-[30px] object-contain"
             />
 
-            {/* Prev / Next */}
-            <button
-              onClick={prev}
-              className="absolute left-[-50px] top-1/2 -translate-y-1/2 text-white text-3xl hover:text-[#00b300] transition-colors hidden sm:block"
-            >‹</button>
-            <button
-              onClick={next}
-              className="absolute right-[-50px] top-1/2 -translate-y-1/2 text-white text-3xl hover:text-[#00b300] transition-colors hidden sm:block"
-            >›</button>
-
-            {/* Counter */}
-            <p className="text-center text-gray-400 text-sm mt-3">{active + 1} / {photos.length}</p>
+            <div className="mt-4 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={showPrevious}
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white"
+              >
+                <FiChevronLeft />
+                Previous
+              </button>
+              <p className="text-sm text-slate-300">
+                {activeIndex + 1} / {photos.length}
+              </p>
+              <button
+                type="button"
+                onClick={showNext}
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white"
+              >
+                Next
+                <FiChevronRight />
+              </button>
+            </div>
           </div>
         </div>
       )}
     </section>
   );
-} 
+}

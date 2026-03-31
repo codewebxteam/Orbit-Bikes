@@ -1,31 +1,63 @@
 import React from 'react';
+import { FiActivity, FiCompass, FiHeadphones, FiLayers, FiSettings, FiTruck } from 'react-icons/fi';
 
 const facilities = [
-  { icon: '🏪', title: 'Showroom', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
-  { icon: '🔧', title: 'Service Center', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
-  { icon: '🧪', title: 'Test Track', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
-  { icon: '📦', title: 'Spare Parts', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
-  { icon: '🎓', title: 'Training Center', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
-  { icon: '💡', title: 'R&D Lab', desc: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.' },
+  {
+    icon: <FiCompass size={20} />,
+    title: 'Experience-led showrooms',
+    desc: 'Retail touchpoints can feel cleaner and more premium when the website sets the tone first.',
+  },
+  {
+    icon: <FiSettings size={20} />,
+    title: 'Service-first operations',
+    desc: 'We call out dependable support instead of burying it behind generic marketing copy.',
+  },
+  {
+    icon: <FiActivity size={20} />,
+    title: 'Ride evaluation spaces',
+    desc: 'Test ride touchpoints are positioned as part of the brand story, not an afterthought.',
+  },
+  {
+    icon: <FiTruck size={20} />,
+    title: 'Spare and supply readiness',
+    desc: 'Operational confidence matters in EV adoption, so it deserves visible placement.',
+  },
+  {
+    icon: <FiHeadphones size={20} />,
+    title: 'Dealer enablement',
+    desc: 'A modern site should support partner trust as much as consumer trust.',
+  },
+  {
+    icon: <FiLayers size={20} />,
+    title: 'R and D narrative',
+    desc: 'Innovation reads better when it is shown through outcomes, clarity, and restraint.',
+  },
 ];
- 
+
 export default function Facilities() {
   return (
-    <section className="px-6 lg:px-16 py-20 bg-gray-50" id="facilities">
-      <div className="text-center mb-12">
-        <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-2">What We Offer</span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">Facilities &amp; Features</h2>
-      </div>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {facilities.map(f => (
-          <div key={f.title} className="group bg-white rounded-2xl p-8 text-center border-2 border-transparent shadow-sm hover:border-[#00b300] hover:-translate-y-2 hover:shadow-xl hover:shadow-green-100 transition-all duration-300 cursor-default">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center text-2xl mx-auto mb-5 group-hover:scale-110 group-hover:rotate-[-5deg] transition-transform duration-300">
-              {f.icon}
-            </div>
-            <h3 className="text-base font-bold text-gray-900 mb-2">{f.title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
-          </div>
-        ))}
+    <section className="section-shell bg-[var(--color-surface)]">
+      <div className="content-wrap">
+        <div className="max-w-3xl">
+          <span className="eyebrow">Operational backbone</span>
+          <h2 className="section-title">A more modern website should also show how the brand supports ownership.</h2>
+          <p className="section-copy">
+            This layer shifts the conversation from just product visuals to the full Orbit ecosystem:
+            retail, support, service, supply, and rider confidence after purchase.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {facilities.map((item) => (
+            <article key={item.title} className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(110,220,140,0.14)] text-[var(--color-brand)]">
+                {item.icon}
+              </div>
+              <h3 className="mt-6 text-xl font-bold text-white">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-300">{item.desc}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

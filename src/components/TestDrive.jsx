@@ -1,62 +1,125 @@
 import React, { useState } from 'react';
+import { FiCalendar, FiCheckCircle, FiMapPin, FiPhoneCall } from 'react-icons/fi';
+
+const benefits = [
+  {
+    icon: <FiMapPin size={18} />,
+    title: 'Dealer-matched scheduling',
+    desc: 'Visitors can request a ride near their city without leaving the page.',
+  },
+  {
+    icon: <FiPhoneCall size={18} />,
+    title: 'Quick call-back expectation',
+    desc: 'The layout makes the next step feel immediate and trustworthy.',
+  },
+  {
+    icon: <FiCalendar size={18} />,
+    title: 'Cleaner capture flow',
+    desc: 'A tighter form and better spacing remove friction from the conversion moment.',
+  },
+];
 
 export default function TestDrive() {
   const [form, setForm] = useState({ name: '', phone: '', city: '', date: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setForm({ name: '', phone: '', city: '', date: '' });
   };
 
   return (
-    <section className="px-6 lg:px-16 py-20 bg-gradient-to-br from-green-50 to-emerald-50" id="testdrive">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        <div className="flex-1">
-          <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-3">Experience It</span>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-5">Book Your Test Drive</h2>
-          <p className="text-gray-500 text-sm leading-relaxed mb-6">
-            Discover the thrill of riding with Orbit eBikes. Feel the power, comfort, and innovation firsthand. Book your free test ride today at your nearest dealer and take the first step towards the future of mobility. 🚀
-          </p>
-          <ul className="flex flex-col gap-3">
-            {['Free test ride at your nearest dealer', 'No commitment required', 'Expert guidance from our team', 'Available 7 days a week'].map(p => (
-              <li key={p} className="flex items-center gap-2 text-sm text-gray-700 font-medium">
-                <span className="text-[#00b300]">✅</span> {p}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section id="test-drive" className="section-shell">
+      <div className="content-wrap">
+        <div className="panel-surface overflow-hidden px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+            <div>
+              <span className="eyebrow">
+                <FiCalendar />
+                Test ride conversion
+              </span>
+              <h2 className="section-title max-w-2xl">
+                Make the booking experience feel premium, simple, and ready to convert.
+              </h2>
+              <p className="section-copy">
+                This section now works like a proper sales assist: strong reasons to book, polished
+                form styling, and a clearer promise of what happens next once someone shows intent.
+              </p>
 
-        <form onSubmit={handleSubmit} className="flex-1 bg-white rounded-2xl p-8 shadow-xl flex flex-col gap-4">
-          <h3 className="text-xl font-bold text-gray-900 mb-1">Schedule Your Ride</h3>
-          {['name', 'phone', 'city'].map(field => (
-            <input
-              key={field}
-              name={field}
-              value={form[field]}
-              onChange={e => setForm({ ...form, [e.target.name]: e.target.value })}
-              placeholder={field === 'name' ? 'Your Full Name' : field === 'phone' ? 'Phone Number' : 'Your City'}
-              required
-              className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#00b300] focus:ring-2 focus:ring-green-100 transition-all duration-200"
-            />
-          ))} 
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={e => setForm({ ...form, date: e.target.value })}
-            required
-            className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#00b300] focus:ring-2 focus:ring-green-100 transition-all duration-200 text-gray-500"
-          />
-          <button
-            type="submit"
-            className={`py-3.5 rounded-xl font-bold text-white transition-all duration-250 ${submitted ? 'bg-green-400' : 'bg-[#00b300] hover:bg-[#009900] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-200'}`}
-          >
-            {submitted ? '✅ Booking Confirmed!' : 'Book Test Drive'}
-          </button>
-        </form>
+              <div className="mt-8 grid gap-4">
+                {benefits.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[24px] border border-white/10 bg-white/5 p-5"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(110,220,140,0.14)] text-[var(--color-brand)]">
+                      {item.icon}
+                    </div>
+                    <h3 className="mt-4 text-lg font-bold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="rounded-[28px] border border-white/10 bg-white/5 p-6 sm:p-8">
+              <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Reserve your experience</p>
+              <h3 className="mt-3 text-3xl font-bold text-white">Book a test ride</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                Share your details and preferred date. This demo keeps the interaction local while
+                showing the final UX direction.
+              </p>
+
+              <div className="mt-8 grid gap-4">
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
+                  placeholder="Full name"
+                  required
+                  className="orbit-input"
+                />
+                <input
+                  name="phone"
+                  value={form.phone}
+                  onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
+                  placeholder="Phone number"
+                  required
+                  className="orbit-input"
+                />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input
+                    name="city"
+                    value={form.city}
+                    onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
+                    placeholder="City"
+                    required
+                    className="orbit-input"
+                  />
+                  <input
+                    type="date"
+                    name="date"
+                    value={form.date}
+                    onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
+                    required
+                    className="orbit-input [color-scheme:dark]"
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className="orbit-button-primary mt-6 w-full">
+                {submitted ? 'Request received' : 'Confirm test ride'}
+              </button>
+
+              <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-slate-300">
+                <FiCheckCircle className="text-[var(--color-brand)]" />
+                <span>Designed to feel lightweight on mobile and strong on trust.</span>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

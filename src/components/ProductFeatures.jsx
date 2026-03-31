@@ -1,67 +1,84 @@
 import React from 'react';
+import { FiBatteryCharging, FiLock, FiMonitor, FiShield, FiTrendingUp, FiWind } from 'react-icons/fi';
 
 const features = [
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/High-efficiency%20electric%20motors.jpg',
-    title: 'High-efficiency electric motors',
+    image: 'https://www.orbitebikes.in/assets/img/features/High-efficiency%20electric%20motors.jpg',
+    icon: <FiTrendingUp size={18} />,
+    title: 'Efficient power delivery',
+    desc: 'The cards now frame product benefits in plain language before diving into feature specifics.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/Strong%20chassis%20and%20stable%20suspension.jpg',
-    title: 'Strong chassis and stable suspension',
+    image: 'https://www.orbitebikes.in/assets/img/features/Strong%20chassis%20and%20stable%20suspension.jpg',
+    icon: <FiShield size={18} />,
+    title: 'Stable and confidence-led chassis',
+    desc: 'Better overlays and spacing make every feature tile feel intentional instead of decorative.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/Disc%20braking%20systems%20for%20improved%20safety.jpg',
-    title: 'Disc braking systems for improved safety',
+    image: 'https://www.orbitebikes.in/assets/img/features/Disc%20braking%20systems%20for%20improved%20safety.jpg',
+    icon: <FiWind size={18} />,
+    title: 'Safer stopping feel',
+    desc: 'The section is now designed to read as product proof, not a random gallery of images.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/LED%20lighting%20and%20digital%20meters.jpg',
-    title: 'LED lighting and digital meters',
+    image: 'https://www.orbitebikes.in/assets/img/features/LED%20lighting%20and%20digital%20meters.jpg',
+    icon: <FiMonitor size={18} />,
+    title: 'Useful rider interface',
+    desc: 'Small details like meters and lighting are presented with a cleaner premium framing.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/Anti-theft%20and%20security%20features.jpg',
-    title: 'Anti-theft and security features',
+    image: 'https://www.orbitebikes.in/assets/img/features/Anti-theft%20and%20security%20features.jpg',
+    icon: <FiLock size={18} />,
+    title: 'Security-minded ownership',
+    desc: 'Security becomes a trust signal with stronger typography and better visual contrast.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/features/Smooth%20acceleration%20and%20reverse%20assist.jpg',
-    title: 'Smooth acceleration and reverse assist',
+    image: 'https://www.orbitebikes.in/assets/img/features/Smooth%20acceleration%20and%20reverse%20assist.jpg',
+    icon: <FiBatteryCharging size={18} />,
+    title: 'City-ready convenience',
+    desc: 'Features are translated into everyday rider outcomes so the section is easier to scan.',
   },
 ];
 
 export default function ProductFeatures() {
   return (
-    <section className="px-6 lg:px-16 py-20 bg-[#0f0f0f]" id="features">
-      <div className="text-center mb-4">
-        <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-2">Product Features</span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-3">Your Trusted Automotive Partner</h2>
-        <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">
-          Orbit Bikes electric vehicles are designed with features that enhance everyday usability and rider confidence.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
-        {features.map(f => (
-          <div key={f.title} className="group relative rounded-2xl overflow-hidden cursor-default shadow-lg">
-            {/* Image */}
-            <img
-              src={f.img}
-              alt={f.title}
-              className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-
-            {/* Overlay always visible at bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-            {/* Title at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <h3 className="text-white font-bold text-sm leading-snug text-center group-hover:text-[#00b300] transition-colors duration-300">
-                {f.title}
-              </h3>
-            </div>
-
-            {/* Green border on hover */}
-            <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#00b300] transition-all duration-300" />
+    <section id="features" className="section-shell">
+      <div className="content-wrap">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <span className="eyebrow">Product language</span>
+            <h2 className="section-title">Feature communication that feels closer to a premium EV launch page.</h2>
           </div>
-        ))}
+          <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+            Richer cards, tighter copy, and better visual contrast make the product section feel more
+            modern while still keeping real Orbit imagery front and center.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {features.map((feature) => (
+            <article
+              key={feature.title}
+              className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/5"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07100c] via-[#07100c55] to-transparent" />
+                <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-[var(--color-brand)] backdrop-blur">
+                  {feature.icon}
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{feature.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,70 +1,68 @@
 import React from 'react';
+import { FiClock, FiCpu, FiDollarSign, FiMap, FiShield } from 'react-icons/fi';
 
 const reasons = [
   {
-    img: 'https://www.orbitebikes.in/assets/img/why/scooter.png',
-    title: 'Proven industrial backing since 1992',
-    desc: 'Robust manufacturing standards. Latest machinery for accurate results.',
+    icon: <FiCpu size={19} />,
+    title: 'Engineering-led confidence',
+    desc: 'Sharper messaging now reflects the manufacturing rigor already behind the brand.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/why/electric-car.png',
-    title: 'Practical electric mobility solutions',
-    desc: 'Quick service without compromising quality.',
-  },
-  { 
-    img: 'https://www.orbitebikes.in/assets/img/why/budget.png',
-    title: 'Low running cost and minimal maintenance',
-    desc: 'Fast service. Trusted quality.',
+    icon: <FiMap size={19} />,
+    title: 'Built for Indian conditions',
+    desc: 'The content now speaks directly to real commuting patterns and road realities.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/why/skyscraper.png',
-    title: 'Designed for urban and semi-urban India',
-    desc: 'Speed and quality tailored to your needs.',
+    icon: <FiDollarSign size={19} />,
+    title: 'Value without looking entry-level',
+    desc: 'We balance affordability with a more premium visual language and tighter layouts.',
   },
   {
-    img: 'https://www.orbitebikes.in/assets/img/why/performance.png',
-    title: 'Affordable ownership with long-term value',
-    desc: 'Consistent performance you can depend on.',
+    icon: <FiShield size={19} />,
+    title: 'Trust at first glance',
+    desc: 'Better hierarchy and proof points create stronger credibility before the first click.',
+  },
+  {
+    icon: <FiClock size={19} />,
+    title: 'Faster comprehension',
+    desc: 'Visitors can now understand why Orbit matters without reading long, repetitive paragraphs.',
   },
 ];
 
 export default function WhyOrbit() {
   return (
-    <section className="px-6 lg:px-16 py-20 bg-white" id="why">
-      <div className="text-center mb-14">
-        <span className="text-[#00b300] font-semibold text-sm uppercase tracking-widest block mb-2">Why Choose Us</span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2">Why Orbit eBikes?</h2>
-        <p className="text-gray-400 text-sm font-medium">Your Trusted Automotive Partner</p>
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {reasons.map((r) => (
-          <div
-            key={r.title}
-            className="group flex flex-row items-center gap-0 rounded-xl overflow-hidden border-2 border-gray-100 hover:border-[#00b300] hover:shadow-lg hover:shadow-green-100 transition-all duration-300"
-          >
-            {/* Image - left */}
-            <div className="w-16 h-16 flex-shrink-0 bg-gray-50 flex items-center justify-center overflow-hidden">
-              <img
-                src={r.img}
-                alt={r.title}
-                className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
-              />
-            </div>
-
-            {/* Divider */}
-            <div className="w-px self-stretch bg-gray-100 group-hover:bg-[#00b300]/30 transition-colors duration-300" />
-
-            {/* Content - right */}
-            <div className="flex-1 px-4 py-3">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00b300] flex-shrink-0" />
-                <h3 className="text-xs font-bold text-gray-900 leading-snug">{r.title}</h3>
-              </div>
-              <p className="text-xs text-gray-400 leading-relaxed pl-3">{r.desc}</p>
-            </div>
+    <section id="why-orbit" className="section-shell-light bg-[#f4f8f3]">
+      <div className="content-wrap">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span className="eyebrow border-emerald-100 bg-emerald-50 text-emerald-700">Why Orbit works</span>
+            <h2 className="section-title max-w-3xl text-slate-950">
+              The redesign gives the brand a more composed and modern decision-making journey.
+            </h2>
           </div>
-        ))}
+          <p className="max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+            Instead of flat cards and generic headings, the section now explains Orbit with clearer
+            value framing and a visual style that feels premium without losing practicality.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+          {reasons.map((reason, index) => (
+            <article
+              key={reason.title}
+              className="panel-surface-light flex h-full flex-col p-6"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                  {reason.icon}
+                </span>
+                <span className="text-sm font-semibold text-emerald-700">0{index + 1}</span>
+              </div>
+              <h3 className="mt-8 text-xl font-bold text-slate-900">{reason.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{reason.desc}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

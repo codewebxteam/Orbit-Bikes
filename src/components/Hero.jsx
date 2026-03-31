@@ -1,66 +1,119 @@
 import React from 'react';
+import { FiArrowRight, FiPlay, FiShield, FiZap } from 'react-icons/fi';
+
+const stats = [
+  { value: '120 km', label: 'claimed top range' },
+  { value: '30+', label: 'years of manufacturing depth' },
+  { value: '48 hrs', label: 'dealer response benchmark' },
+];
+
+const highlights = [
+  'Torque tuned for crowded city roads',
+  'Confident service support and spare availability',
+  'Sleek EV design with grounded engineering',
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[92vh] bg-[#0f0f0f] overflow-hidden flex items-center">
+    <section id="home" className="section-shell -mt-24 pt-36 sm:pt-40">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-[-10%] top-24 h-72 w-72 rounded-full bg-[rgba(110,220,140,0.20)] blur-3xl" />
+        <div className="absolute right-[6%] top-28 h-80 w-80 rounded-full bg-[rgba(217,255,122,0.12)] blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+      </div>
 
-      {/* Background glow */}
-      <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-[#00b300] opacity-10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-80px] right-[200px] w-[400px] h-[400px] bg-[#00b300] opacity-10 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="relative z-10 w-full flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 gap-10 py-16">
-
-        {/* Left Content */}
-        <div className="flex-1 max-w-2xl text-center lg:text-left">
-          <span className="inline-flex items-center gap-2 bg-[#00b300]/10 border border-[#00b300]/40 text-[#00b300] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6">
-            🌿 Eco-Friendly Rides
+      <div className="content-wrap grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative z-10">
+          <span className="eyebrow">
+            <FiZap />
+            New electric mobility language
           </span>
- 
-          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] mb-6">
-            Ride the <br />
-            <span className="text-[#00b300]">Future</span> with <br />
-            <span className="text-white">Orbit eBikes</span>
+          <h1 className="section-title max-w-3xl text-5xl sm:text-6xl xl:text-7xl">
+            Orbit is ready for a sharper, premium electric brand presence.
           </h1>
-
-          <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
-            Premium electric scooters designed for urban commuters and adventure seekers. Zero emissions. Maximum thrill.
+          <p className="section-copy max-w-2xl text-base text-slate-300 sm:text-lg">
+            We rebuilt the landing experience around cleaner typography, a stronger product story,
+            and a more premium visual rhythm so the website feels engineered instead of generic.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-12">
-            <button className="bg-[#00b300] hover:bg-[#009900] text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#00b300]/40">
-              Explore Bikes
-            </button>
-            <button className="border border-white/20 text-white hover:bg-white/10 px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 hover:-translate-y-1">
-              ▶ Watch Video
-            </button>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a href="#lineup" className="orbit-button-primary">
+              Explore lineup
+              <FiArrowRight />
+            </a>
+            <a href="#gallery" className="orbit-button-secondary">
+              <FiPlay />
+              View brand story
+            </a>
           </div>
 
-          {/* Stats */}
-          <div className="flex gap-8 justify-center lg:justify-start">
-            {[['500+', 'Happy Riders'], ['100km', 'Max Range'], ['5★', 'Rating']].map(([val, label]) => (
-              <div key={label} className="flex flex-col group cursor-default">
-                <strong className="text-2xl lg:text-3xl font-black text-[#00b300] group-hover:scale-110 transition-transform duration-200 origin-left">{val}</strong>
-                <span className="text-xs text-gray-500 mt-1 uppercase tracking-wider">{label}</span>
+          <div className="mt-10 grid gap-3 sm:max-w-xl">
+            {highlights.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(110,220,140,0.15)] text-[var(--color-brand)]">
+                  <FiShield />
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                <p className="text-3xl font-bold text-white">{stat.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.24em] text-slate-400">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right - Bike Image */}
-        <div className="flex-1 flex justify-center lg:justify-end items-center relative">
-          {/* Glow ring behind image */}
-          <div className="absolute w-[380px] h-[380px] lg:w-[500px] lg:h-[500px] rounded-full bg-[#00b300]/10 blur-2xl" />
+        <div className="relative z-10">
+          <div className="panel-surface relative overflow-hidden p-6 sm:p-8">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(110,220,140,0.18),_transparent_40%)]" />
+            <div className="absolute right-[-50px] top-[-50px] h-40 w-40 rounded-full border border-white/10" />
 
-          <img
-            src="https://www.orbitebikes.in/auth/upload/product-photo/0c00ac12-98b2-4286-af45-b3e54987dd85.png"
-            alt="Orbit eBike"
-            className="relative z-10 w-[320px] lg:w-[500px] xl:w-[560px] object-contain drop-shadow-[0_0_60px_rgba(0,179,0,0.35)] hover:scale-105 hover:drop-shadow-[0_0_80px_rgba(0,179,0,0.5)] transition-all duration-500"
-          />
+            <div className="relative flex flex-col gap-6">
+              <div className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-5 py-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Flagship concept</p>
+                  <p className="mt-2 text-xl font-bold text-white">Orbit Urban Glide</p>
+                </div>
+                <div className="rounded-full border border-[var(--color-brand)] px-4 py-2 text-xs uppercase tracking-[0.28em] text-[var(--color-brand)]">
+                  Fresh look
+                </div>
+              </div>
+
+              <div className="relative rounded-[32px] bg-[linear-gradient(160deg,_rgba(255,255,255,0.12),_rgba(255,255,255,0.02))] px-4 py-8 sm:px-8">
+                <div className="absolute inset-x-10 bottom-7 h-8 rounded-full bg-[rgba(110,220,140,0.22)] blur-2xl" />
+                <img
+                  src="https://www.orbitebikes.in/auth/upload/product-photo/0c00ac12-98b2-4286-af45-b3e54987dd85.png"
+                  alt="Orbit electric scooter"
+                  className="relative z-10 mx-auto w-full max-w-[30rem] object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
+                />
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl border border-white/10 bg-[rgba(255,255,255,0.05)] p-5">
+                  <p className="text-xs uppercase tracking-[0.26em] text-slate-400">Design direction</p>
+                  <p className="mt-3 text-lg font-semibold text-white">
+                    Cleaner surfaces, darker contrast, warmer green accents.
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-[rgba(255,255,255,0.05)] p-5">
+                  <p className="text-xs uppercase tracking-[0.26em] text-slate-400">User impact</p>
+                  <p className="mt-3 text-lg font-semibold text-white">
+                    Better hierarchy, stronger trust signals, and a more premium first impression.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0f0f0f] to-transparent pointer-events-none" />
     </section>
   );
 }

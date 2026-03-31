@@ -1,38 +1,77 @@
 import React from 'react';
+import { FiArrowUpRight, FiAward, FiTool } from 'react-icons/fi';
 
+const principles = [
+  'Backed by Jindal Forgings manufacturing discipline since 1992',
+  'Built for Indian commutes with practical comfort and serviceability',
+  'Positioned as affordable electric mobility without a budget look',
+];
 
 export default function AboutUs() {
   return (
-    <section className="px-6 lg:px-16 py-20 bg-white" id="about">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        <div className="flex-1">
-          <div className="w-full rounded-3xl overflow-hidden shadow-xl hover:scale-[1.02] hover:shadow-2xl transition-all duration-400">
+    <section id="about" className="section-shell-light bg-[#f4f8f3]">
+      <div className="content-wrap grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative">
+          <div className="panel-surface-light overflow-hidden p-4">
             <img
-              src="/about.png"
-              alt="About Orbit eBikes"
-              className="w-full h-full object-cover block"
+              src="/abut.png"
+              alt="Orbit production and brand showcase"
+              className="h-full min-h-[26rem] w-full rounded-[24px] object-cover"
             />
           </div>
+          <div className="absolute -bottom-8 right-4 max-w-xs rounded-[28px] border border-emerald-100 bg-white p-5 shadow-[0_24px_60px_rgba(16,40,24,0.12)]">
+            <p className="text-xs uppercase tracking-[0.28em] text-emerald-700">Brand foundation</p>
+            <p className="mt-3 text-lg font-semibold text-slate-900">
+              Industrial credibility meets a calmer, more premium customer-facing story.
+            </p>
+          </div>
         </div>
-        <div className="flex-1">
-          <h3 className="text-[#333333] font-semibold text-sm uppercase tracking-widest block mb-3">About Us</h3>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#438b2f] mb-5 leading-snug">Orbit eBikes</h2>
-          <h3 className='font -bold text-[#333333]'>Driven by Engineering. Powered by Trust.</h3>
-          <p className="text-gray-500 text-sm leading-relaxed mb-4">
-          Orbit Bikes is a modern electric mobility brand backed by the manufacturing legacy of JINDAL FORGINGS (Since 1992). We design and deliver reliable, efficient, and future-ready electric two-wheelers built for Indian roads and Indian users.
-          </p>
-          <p className="text-gray-500 text-sm leading-relaxed mb-8">
-            With a focus on performance, durability, and cost efficiency, Orbit Bikes aims to accelerate the transition toward sustainable transportation without compromising on quality or safety.
+
+        <div className="pt-4 lg:pt-0">
+          <span className="eyebrow border-emerald-100 bg-emerald-50 text-emerald-700">About Orbit</span>
+          <h2 className="section-title text-slate-950">
+            A stronger story for a brand that already has the engineering depth.
+          </h2>
+          <p className="section-copy-light">
+            Orbit Bikes already has the substance: manufacturing maturity, road-focused product
+            decisions, and a value proposition that matters in India. The redesign sharpens how that
+            story is told, using better hierarchy and more deliberate visuals.
           </p>
 
-          <p className="text-gray-500 text-sm leading-relaxed mb-8">
-            Orbit Bikes is an electric two-wheeler brand established to meet the growing demand for dependable and affordable electric mobility in India. The company operates under the strategic guidance and industrial expertise of Jindal Forgings, a name associated with precision manufacturing and engineering excellence for over three decades.
-          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="panel-surface-light p-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                <FiAward size={20} />
+              </div>
+              <h3 className="mt-4 text-xl font-bold text-slate-900">Manufacturing legacy</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                The site now highlights pedigree without feeling old-fashioned or overly technical.
+              </p>
+            </div>
+            <div className="panel-surface-light p-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                <FiTool size={20} />
+              </div>
+              <h3 className="mt-4 text-xl font-bold text-slate-900">Product trust</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Better copy blocks and service signals make the brand feel dependable and modern.
+              </p>
+            </div>
+          </div>
 
-          <p className="text-gray-500 text-sm leading-relaxed mb-8">
-            Our focus is on building electric bikes that balance performance, safety, and long-term reliability. Every product is engineered with attention to structural strength, efficient power delivery, and rider comfort.
-          </p>
-          
+          <div className="mt-8 space-y-3">
+            {principles.map((item) => (
+              <div
+                key={item}
+                className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm leading-7 text-slate-700"
+              >
+                <span className="mt-1 text-emerald-700">
+                  <FiArrowUpRight />
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
