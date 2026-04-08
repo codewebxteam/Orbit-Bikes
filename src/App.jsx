@@ -13,6 +13,7 @@ import Gallery from './components/Gallery.jsx';
 import Feedback from './components/Feedback.jsx';
 import Footer from './components/Footer.jsx';
 import ScooterDetail from './components/ScooterDetail.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 function Home() {
   return (
@@ -30,6 +31,7 @@ function Home() {
         <Feedback />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
@@ -43,6 +45,7 @@ function GalleryPage() {
         <Gallery />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
@@ -51,7 +54,7 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/"        element={<Home />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/scooter/:id" element={<ScooterDetail />} />
       </Routes>
