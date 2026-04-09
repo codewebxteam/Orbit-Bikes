@@ -52,9 +52,9 @@ function GalleryPage() {
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
-        <Route path="/"        element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/scooter/:id" element={<ScooterDetail />} />
       </Routes>
