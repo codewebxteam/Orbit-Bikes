@@ -15,20 +15,20 @@ const highlights = [
 
 export default function Hero() {
   return (
-    <section id="home" className="section-shell -mt-24 flex min-h-screen items-center pt-24 pb-4">
+    <section id="home" className="section-shell -mt-24 flex min-h-screen items-center pt-24 pb-8">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute left-[-10%] top-24 h-72 w-72 rounded-full bg-[rgba(110,220,140,0.20)] blur-3xl" />
         <div className="absolute right-[6%] top-28 h-80 w-80 rounded-full bg-[rgba(217,255,122,0.12)] blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
       </div>
 
-      <div className="content-wrap grid items-center gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="content-wrap grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative z-10">
           <span className="eyebrow">
             <FiZap />
             New electric mobility language
           </span>
-          <h1 className="section-title max-w-3xl text-3xl sm:text-4xl xl:text-5xl">
+          <h1 className="section-title max-w-3xl">
             Orbit is ready for a sharper, premium electric brand presence.
           </h1>
           <p className="section-copy max-w-2xl text-sm text-slate-300">
@@ -37,11 +37,11 @@ export default function Hero() {
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <a href="#lineup" className="orbit-button-primary">
+            <a href="#lineup" className="orbit-button-primary text-base sm:text-sm">
               Explore lineup
               <FiArrowRight />
             </a>
-            <a href="#gallery" className="orbit-button-secondary">
+            <a href="#gallery" className="orbit-button-secondary text-base sm:text-sm">
               <FiPlay />
               View brand story
             </a>
@@ -51,9 +51,9 @@ export default function Hero() {
             {highlights.map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-200"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-[13px] text-slate-200 sm:px-4"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(110,220,140,0.15)] text-[var(--color-brand)]">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[rgba(110,220,140,0.15)] text-[var(--color-brand)]">
                   <FiShield />
                 </span>
                 <span>{item}</span>
@@ -61,11 +61,11 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid grid-cols-3 gap-2">
             {stats.map((stat) => (
               <div key={stat.label} className="rounded-3xl border border-white/10 bg-white/5 p-3">
-                <p className="text-2xl font-bold text-white">{stat.value}</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-400">{stat.label}</p>
+                <p className="text-xl font-bold text-white sm:text-2xl">{stat.value}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400 sm:tracking-[0.24em]">{stat.label}</p>
               </div>
             ))}
           </div>

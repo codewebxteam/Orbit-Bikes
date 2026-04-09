@@ -67,32 +67,29 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="section-shell gallery-bg py-12 sm:py-20">
-      {/* Ambient blobs */}
+    <section id="gallery" className="section-shell gallery-bg">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-[-8%] top-[10%] h-96 w-96 rounded-full bg-[rgba(110,220,140,0.08)] blur-3xl" />
-        <div className="absolute right-[-4%] bottom-[15%] h-80 w-80 rounded-full bg-[rgba(217,255,122,0.06)] blur-3xl" />
+        <div className="absolute left-[-8%] top-[10%] h-64 w-64 rounded-full bg-[rgba(110,220,140,0.08)] blur-3xl sm:h-96 sm:w-96" />
+        <div className="absolute right-[-4%] bottom-[15%] h-64 w-64 rounded-full bg-[rgba(217,255,122,0.06)] blur-3xl sm:h-80 sm:w-80" />
       </div>
 
       <div className="content-wrap">
-        {/* ── Header ── */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">
             <span className="eyebrow">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-brand)] inline-block" />
               Gallery
             </span>
-            <h2 className="section-title mt-4 text-3xl sm:text-4xl">
+            <h2 className="section-title">
               Orbit in every frame.
             </h2>
-            <p className="section-copy text-sm">
-              A visual journey through design, motion, and urban energy — captured for the road ahead.
+            <p className="section-copy">
+              A visual journey through design, motion, and urban energy.
             </p>
           </div>
 
-          {/* Layout toggle */}
           <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="text-xs text-slate-400 mr-1 hidden sm:inline">View</span>
+            <span className="text-[10px] uppercase tracking-widest text-slate-500 mr-1 hidden sm:inline">Layout</span>
             {[
               { id: 'grid', Icon: FiGrid },
               { id: 'masonry', Icon: FiList },
@@ -102,45 +99,40 @@ export default function Gallery() {
                 type="button"
                 onClick={() => setLayout(id)}
                 aria-label={`${id} view`}
-                className={`flex h-9 w-9 items-center justify-center rounded-xl border transition-all duration-200 ${layout === id
+                className={`flex h-10 w-10 items-center justify-center rounded-2xl border transition-all duration-300 ${layout === id
                     ? 'border-[var(--color-brand)] bg-[rgba(110,220,140,0.12)] text-[var(--color-brand)]'
-                    : 'border-white/10 bg-white/5 text-slate-400 hover:text-white'
+                    : 'border-white/10 bg-white/5 text-slate-400 hover:text-white sm:h-9 sm:w-9'
                   }`}
               >
-                <Icon size={15} />
+                <Icon size={16} />
               </button>
             ))}
           </div>
         </div>
 
-        {/* ── Filter pills ── */}
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-wrap gap-2 sm:mt-10">
           {TAGS.map((tag) => (
             <button
               key={tag}
               type="button"
               onClick={() => { setActiveTag(tag); setActiveIndex(null); }}
-              className={`rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition-all duration-200 ${activeTag === tag
-                  ? 'border-[var(--color-brand)] bg-[rgba(110,220,140,0.16)] text-[var(--color-brand)] shadow-[0_0_16px_rgba(110,220,140,0.2)]'
-                  : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/25 hover:text-white'
+              className={`rounded-full border px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-xs ${activeTag === tag
+                  ? 'border-[var(--color-brand)] bg-[rgba(110,220,140,0.16)] text-[var(--color-brand)] shadow-[0_4px_16px_rgba(110,220,140,0.15)]'
+                  : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/30 hover:text-white'
                 }`}
             >
               {tag}
               {tag !== 'All' && (
-                <span className="ml-2 opacity-50">
+                <span className="ml-2 font-medium opacity-30">
                   {photos.filter((p) => p.tag === tag).length}
                 </span>
               )}
             </button>
           ))}
-          <span className="ml-auto self-center text-xs text-slate-500">
-            {filtered.length} photo{filtered.length !== 1 ? 's' : ''}
-          </span>
         </div>
 
-        {/* ── Grid ── */}
         <div
-          className={`mt-8 gap-4 ${layout === 'masonry'
+          className={`mt-8 gap-4 sm:mt-10 ${layout === 'masonry'
               ? 'columns-1 sm:columns-2 xl:columns-3'
               : 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'
             }`}
@@ -158,18 +150,16 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* ── Empty state ── */}
         {filtered.length === 0 && (
           <div className="mt-20 flex flex-col items-center gap-4 text-center">
-            <div className="h-16 w-16 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-400">
-              <FiGrid size={24} />
+            <div className="h-14 w-14 rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center text-slate-500">
+              <FiX size={24} />
             </div>
-            <p className="text-slate-400">No photos in this category.</p>
+            <p className="text-[13px] text-slate-500 uppercase tracking-widest">No photos found</p>
           </div>
         )}
       </div>
 
-      {/* ── Lightbox ── */}
       {activeIndex !== null && (
         <Lightbox
           photos={filtered}

@@ -42,39 +42,39 @@ const features = [
 
 export default function ProductFeatures() {
   return (
-    <section id="features" className="section-shell flex min-h-screen items-center py-6">
+    <section id="features" className="section-shell flex min-h-screen items-center">
       <div className="content-wrap">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <span className="eyebrow">Product language</span>
-            <h2 className="section-title text-2xl sm:text-3xl">Feature communication that feels closer to a premium EV launch page.</h2>
+            <h2 className="section-title">Feature communication that feels closer to a premium EV launch.</h2>
           </div>
           <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
             Richer cards, tighter copy, and better visual contrast make the product section feel more
-            modern while still keeping real Orbit imagery front and center.
+            modern while keeping real Orbit imagery front and center.
           </p>
         </div>
 
-        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <article
               key={feature.title}
-              className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/5"
+              className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition-all duration-300 hover:border-[var(--color-brand)]/30 hover:bg-white/[0.08]"
             >
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-44 overflow-hidden sm:h-40">
                 <img
                   src={feature.image}
                   alt={feature.title}
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#07100c] via-[#07100c55] to-transparent" />
-                <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-[var(--color-brand)] backdrop-blur">
+                <div className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-[var(--color-brand)] backdrop-blur sm:left-5 sm:top-5 sm:h-11 sm:w-11">
                   {feature.icon}
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-base font-bold text-white">{feature.title}</h3>
-                <p className="mt-1 text-xs leading-5 text-slate-300">{feature.desc}</p>
+              <div className="p-5 sm:p-4">
+                <h3 className="text-[17px] font-bold text-white sm:text-base">{feature.title}</h3>
+                <p className="mt-2 text-[12px] leading-5 text-slate-300/80 sm:mt-1 sm:text-xs sm:leading-6">{feature.desc}</p>
               </div>
             </article>
           ))}

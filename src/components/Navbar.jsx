@@ -122,14 +122,14 @@ export default function Navbar() {
               className="flex items-center gap-3 group"
               aria-label="Orbit – go to homepage"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-brand)]/30 bg-[rgba(110,220,140,0.12)] text-xs font-black uppercase tracking-widest text-[var(--color-brand-warm)] transition-all duration-300 group-hover:bg-[rgba(110,220,140,0.22)] group-hover:scale-105">
+              <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[var(--color-brand)]/30 bg-[rgba(110,220,140,0.12)] text-[10px] sm:text-xs font-black uppercase tracking-widest text-[var(--color-brand-warm)] transition-all duration-300 group-hover:bg-[rgba(110,220,140,0.22)] group-hover:scale-105">
                 OR
               </span>
               <span>
-                <span className="block font-['Space_Grotesk'] text-[17px] font-bold tracking-[0.22em] text-white leading-none">
+                <span className="block font-['Space_Grotesk'] text-[15px] sm:text-[17px] font-bold tracking-[0.22em] text-white leading-none">
                   ORBIT
                 </span>
-                <span className="block text-[10px] uppercase tracking-[0.32em] text-slate-400 mt-0.5">
+                <span className="block text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-slate-400 mt-0.5">
                   Electric mobility
                 </span>
               </span>
@@ -180,11 +180,11 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen((o) => !o)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
+              {menuOpen ? <FiX size={16} /> : <FiMenu size={16} />}
             </button>
           </div>
         </div>
@@ -204,8 +204,8 @@ export default function Navbar() {
           />
 
           {/* Drawer */}
-          <div className="relative mt-20 mx-4 rounded-3xl border border-white/10 bg-[#0f1e17] p-5 shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
-            <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+          <div className="relative mt-[84px] mx-4 rounded-[2rem] border border-white/10 bg-[#0f1e17] p-4 shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
+            <nav className="flex flex-col gap-0.5" aria-label="Mobile navigation">
               {navLinks.map((link) =>
                 link.href.startsWith('/') ? (
                   <Link
