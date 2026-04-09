@@ -6,7 +6,7 @@ const navLinks = [
   { name: 'About',      href: '#about' },
   { name: 'Test Ride',  href: '#test-drive' },
   { name: 'Why Orbit',  href: '#why-orbit' },
-  { name: 'Lineup',     href: '#lineup' },
+  { name: 'Products',     href: '#lineup' },
   { name: 'Gallery',    href: '/gallery' },
   { name: 'Feedback',   href: '#feedback' },
   { name: 'Contact',    href: '#contact' },
