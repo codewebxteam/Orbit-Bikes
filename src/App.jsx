@@ -14,6 +14,8 @@ import Feedback from './components/Feedback.jsx';
 import Footer from './components/Footer.jsx';
 import ScooterDetail from './components/ScooterDetail.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import ProductsPage from './components/ProductsPage.jsx';
+import PartnerWithUs from './components/PartnerWithUs.jsx';
 
 function Home() {
   return (
@@ -50,12 +52,42 @@ function GalleryPage() {
   );
 }
 
+function ProductsRoutePage() {
+  React.useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <div className="min-h-screen bg-[var(--color-ink)] text-white">
+      <Navbar />
+      <main>
+        <ProductsPage />
+      </main>
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+}
+
+function PartnerPage() {
+  React.useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <div className="min-h-screen bg-[var(--color-ink)] text-white">
+      <Navbar />
+      <main>
+        <PartnerWithUs />
+      </main>
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/products" element={<ProductsRoutePage />} />
+        <Route path="/partner" element={<PartnerPage />} />
         <Route path="/scooter/:id" element={<ScooterDetail />} />
       </Routes>
     </BrowserRouter>

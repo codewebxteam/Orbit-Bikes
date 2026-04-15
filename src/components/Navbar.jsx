@@ -3,13 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiArrowRight, FiMenu, FiX } from 'react-icons/fi';
 
 const navLinks = [
-  { name: 'About',      href: '#about' },
-  { name: 'Test Ride',  href: '#test-drive' },
-  { name: 'Why Orbit',  href: '#why-orbit' },
-  { name: 'Products',     href: '#lineup' },
-  { name: 'Gallery',    href: '/gallery' },
-  { name: 'Feedback',   href: '#feedback' },
-  { name: 'Contact',    href: '#contact' },
+  { name: 'About',         href: '#about' },
+  { name: 'Test Ride',     href: '#test-drive' },
+  { name: 'Why Orbit',     href: '#why-orbit' },
+  { name: 'Products',      href: '/products' },
+  { name: 'Gallery',       href: '/gallery' },
+  { name: 'Partner',       href: '/partner' },
+  { name: 'Feedback',      href: '#feedback' },
+  { name: 'Contact',       href: '#contact' },
 ];
 
 export default function Navbar() {

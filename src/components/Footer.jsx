@@ -1,5 +1,6 @@
 import React from 'react';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import { FiArrowRight, FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 
@@ -12,10 +13,12 @@ const ADMIN_EMAIL = 'YOUR_ADMIN_EMAIL';
 // ────────────────────────────────────────────────────────────
 
 const links = [
-  { name: 'About', href: '#about' },
-  { name: 'Test Ride', href: '#test-drive' },
-  { name: 'Features', href: '#features' },
-  { name: 'Lineup', href: '#lineup' },
+  { name: 'About',           href: '#about',       isHash: true },
+  { name: 'Test Ride',       href: '#test-drive',  isHash: true },
+  { name: 'Features',        href: '#features',    isHash: true },
+  { name: 'Products',        href: '/products',    isHash: false },
+  { name: 'Partner With Us', href: '/partner',     isHash: false },
+  { name: 'Gallery',         href: '/gallery',     isHash: false },
 ];
 
 const socialLinks = [
@@ -87,16 +90,27 @@ export default function Footer() {
             <div className="panel-surface flex-1 p-6 sm:p-8">
               <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 sm:text-xs">Navigation</p>
               <div className="mt-6 grid gap-2.5">
-                {links.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-5 py-3 text-sm text-slate-400 transition-all duration-300 hover:border-[var(--color-brand)]/30 hover:bg-white/[0.06] hover:text-white"
-                  >
-                    {link.name}
-                    <FiArrowRight className="opacity-0 transition-all duration-300 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-[var(--color-brand)]" size={14} />
-                  </a>
-                ))}
+                {links.map((link) =>
+                  link.isHash ? (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-5 py-3 text-sm text-slate-400 transition-all duration-300 hover:border-[var(--color-brand)]/30 hover:bg-white/[0.06] hover:text-white"
+                    >
+                      {link.name}
+                      <FiArrowRight className="opacity-0 transition-all duration-300 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-[var(--color-brand)]" size={14} />
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-5 py-3 text-sm text-slate-400 transition-all duration-300 hover:border-[var(--color-brand)]/30 hover:bg-white/[0.06] hover:text-white"
+                    >
+                      {link.name}
+                      <FiArrowRight className="opacity-0 transition-all duration-300 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-[var(--color-brand)]" size={14} />
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { FiArrowUpRight } from 'react-icons/fi';
+import { FiArrowUpRight, FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const scooters = [
   {
@@ -95,6 +96,26 @@ export default function EScooters() {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* View All / Partner CTAs */}
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+          <Link
+            to="/products"
+            className="orbit-button-dark inline-flex items-center gap-2 px-8"
+          >
+            View All Products <FiArrowRight size={15} />
+          </Link>
+          <Link
+            to="/partner"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-900"
+          >
+            Interested in partnering with us?
+            <FiArrowRight
+              size={14}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
+          </Link>
         </div>
       </div>
     </section>
