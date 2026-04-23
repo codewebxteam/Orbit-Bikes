@@ -1,24 +1,29 @@
-import React from 'react';
-import emailjs from '@emailjs/browser';
-import { Link } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import { FiArrowRight, FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import React from "react";
+import emailjs from "@emailjs/browser";
+import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
+import { FiArrowRight, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
 // ── EmailJS config ──────────────────────────────────────────
-const EJS_SERVICE = 'YOUR_SERVICE_ID';      // replace
-const EJS_ADMIN_TPL = 'YOUR_ADMIN_TEMPLATE';  // replace
-const EJS_USER_TPL = 'YOUR_USER_TEMPLATE';   // replace
-const EJS_PUBLIC = 'YOUR_PUBLIC_KEY';       // replace
-const ADMIN_EMAIL = 'YOUR_ADMIN_EMAIL';
+const EJS_SERVICE = "YOUR_SERVICE_ID";
+const EJS_ADMIN_TPL = "YOUR_ADMIN_TEMPLATE";
+const EJS_USER_TPL = "YOUR_USER_TEMPLATE";
+const EJS_PUBLIC = "YOUR_PUBLIC_KEY";
+const ADMIN_EMAIL = "YOUR_ADMIN_EMAIL";
 // ────────────────────────────────────────────────────────────
 
 const links = [
-  { name: 'About',           href: '#about',       isHash: true },
-  { name: 'Test Ride',       href: '#test-drive',  isHash: true },
-  { name: 'Features',        href: '#features',    isHash: true },
-  { name: 'Products',        href: '/products',    isHash: false },
-  { name: 'Partner With Us', href: '/partner',     isHash: false },
-  { name: 'Gallery',         href: '/gallery',     isHash: false },
+  { name: "About", href: "#about", isHash: true },
+  { name: "Test Ride", href: "#test-drive", isHash: true },
+  { name: "Features", href: "#features", isHash: true },
+  { name: "Products", href: "/products", isHash: false },
+  { name: "Partner With Us", href: "/partner", isHash: false },
+  { name: "Gallery", href: "/gallery", isHash: false },
 ];
 
 const socialLinks = [
@@ -30,35 +35,54 @@ const socialLinks = [
     icon: <FaInstagram size={14} />,
     href: "https://www.instagram.com/orbitelectricbikes",
   },
+  {
+    icon: <FaLinkedinIn size={14} />,
+    href: "#", // Add your link
+  },
+  {
+    icon: <FaYoutube size={14} />,
+    href: "#", // Add your link
+  },
 ];
 
 export default function Footer() {
-  const [email, setEmail] = React.useState('');
-  const [status, setStatus] = React.useState('idle'); // idle | sending | done | error
+  const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState("idle"); // idle | sending | done | error
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    setStatus('sending');
+    setStatus("sending");
     try {
       // 1. Notify admin
-      await emailjs.send(EJS_SERVICE, EJS_ADMIN_TPL, {
-        subscriber_email: email,
-        to_email: ADMIN_EMAIL,
-      }, EJS_PUBLIC);
+      await emailjs.send(
+        EJS_SERVICE,
+        EJS_ADMIN_TPL,
+        {
+          subscriber_email: email,
+          to_email: ADMIN_EMAIL,
+        },
+        EJS_PUBLIC,
+      );
 
       // 2. Congratulation mail to subscriber
-      await emailjs.send(EJS_SERVICE, EJS_USER_TPL, {
-        to_email: email,
-        to_name: email.split('@')[0],
-      }, EJS_PUBLIC);
+      await emailjs.send(
+        EJS_SERVICE,
+        EJS_USER_TPL,
+        {
+          to_email: email,
+          to_name: email.split("@")[0],
+        },
+        EJS_PUBLIC,
+      );
 
-      setStatus('done');
-      setEmail('');
+      setStatus("done");
+      setEmail("");
     } catch {
-      setStatus('error');
+      setStatus("error");
     }
-    setTimeout(() => setStatus('idle'), 4000);
+    setTimeout(() => setStatus("idle"), 4000);
   };
+
   return (
     <footer
       id="contact"
@@ -144,12 +168,20 @@ export default function Footer() {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 text-[var(--color-brand)] transition-colors group-hover:bg-[rgba(110,220,140,0.15)]">
                   <FiPhone size={16} />
                 </div>
-                <a
-                  href="tel:9458502838"
-                  className="text-slate-300 transition-colors hover:text-white"
-                >
-                  +91 94585 02838 / 9151770133 / 8182002200
-                </a>
+                <div className="flex flex-col">
+                  <a
+                    href="tel:9458502838"
+                    className="text-slate-300 transition-colors hover:text-white"
+                  >
+                    +91 94585 02838
+                  </a>
+                  <a
+                    href="tel:9151770133"
+                    className="text-slate-300 transition-colors hover:text-white"
+                  >
+                    +91 91517 70133
+                  </a>
+                </div>
               </div>
               <div className="flex items-center gap-4 group">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 text-[var(--color-brand)] transition-colors group-hover:bg-[rgba(110,220,140,0.15)]">
@@ -168,7 +200,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-bold text-slate-200">Orbit eBikes</p>
-                  <p className="mt-1 text-[11px] leading-relaxed text-slate-400 line-clamp-2">
+                  <p className="mt-1 text-[11px] leading-relaxed text-slate-400">
                     G-1/700–701, Road No. 22, Phase II, RIICO Industrial Area,
                     Bhiwadi, Rajasthan – 301001
                   </p>
@@ -187,7 +219,7 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="orbit-input border-white/5 bg-white/5 focus:bg-white/10"
+                  className="orbit-input w-full border-white/5 bg-white/5 focus:bg-white/10"
                 />
                 <button
                   type="submit"
@@ -199,7 +231,7 @@ export default function Footer() {
               </form>
               {status === "done" && (
                 <p className="mt-3 text-[11px] text-emerald-400 flex items-center gap-2">
-                  <div className="h-1 w-1 rounded-full bg-current" /> Success!
+                  <span className="h-1 w-1 rounded-full bg-current" /> Success!
                 </p>
               )}
             </div>
@@ -219,7 +251,12 @@ export default function Footer() {
             <div className="h-4 w-px bg-white/10 hidden sm:block" />
             <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500 hidden sm:block">
               Made With ❤️ by{" "}
-              <a href="https://codewebx.in" target="_blank" rel="noreferrer">
+              <a
+                href="https://codewebx.in"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors"
+              >
                 CodeWebX
               </a>
             </p>
