@@ -129,7 +129,7 @@ Please confirm my test ride slot. Thank you!`;
               <div className="mt-6 grid gap-2">
                 <a href="tel:9458502838" className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs text-slate-300 transition hover:border-[var(--color-brand)] hover:text-white">
                   <FiPhoneCall className="shrink-0 text-[var(--color-brand)]" />
-                  <span>+91 94585 02838</span>
+                  <span>+91 94585 02838 / 9151770133 / 8182002200</span>
                 </a>
                 <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs text-slate-300">
                   <FiMapPin className="mt-0.5 shrink-0 text-[var(--color-brand)]" />
